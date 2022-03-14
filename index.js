@@ -2,11 +2,14 @@ const express = require('express')
 
 const app = express()
 const { PrismaClient } = require('@prisma/client')
+const router = require('./routes/task')
 
 const prisma = new PrismaClient()
 // use `prisma` in your application to read and write data in your DB
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+
+app.use("/api/tasks",router)
 
 app.get("/",(req,res)=>{
     res.send("hello")
